@@ -1,4 +1,4 @@
-wms
-===
+Play Model Example
+==================
 
-Warehouse Management System (adapted from "Play for Java")
+A simple Play Framework application illustrating the "Model" part of MVC.
