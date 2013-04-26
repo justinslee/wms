@@ -38,7 +38,7 @@ public class ModelTest {
     tag.products.add(product);
     
     // Create 1 warehouse that's associated with 1 StockItem for 1 Product
-    Warehouse warehouse = new Warehouse("W-01", "Honolulu Warehouse");
+    Warehouse warehouse = new Warehouse("W-01", "Honolulu Warehouse", "Honolulu", "HI", "96822");
     StockItem stockitem = new StockItem(warehouse, product, 100);
     warehouse.stockitems.add(stockitem);
     stockitem.warehouse = warehouse;

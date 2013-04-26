@@ -1,0 +1,27 @@
+@(primaryKey: Long, warehouseForm: Form[models.Warehouse])
+
+@import helper._
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
+
+@main("Warehouse Management System", "home") {
+
+<div class="container">
+  <div class="well">
+    <h3>Update Warehouse</h3>
+    @form(routes.Warehouse.update(primaryKey), 'class -> "form-horizontal") {
+      @inputText(warehouseForm("warehouseId"), '_label -> "ID", 'placeholder -> "Warehouse-01")
+      @inputText(warehouseForm("name"), '_label -> "Name", 'placeholder -> "Dole Cannery")
+      @inputText(warehouseForm("city"), '_label -> "City", 'placeholder -> "Honolulu")
+      @inputText(warehouseForm("state"), '_label -> "State", 'placeholder -> "HI")
+      @inputText(warehouseForm("zip"), '_label -> "Zip", 'placeholder -> "96822")
+      <div class="control-group">
+        <div class="controls">    
+          <input type="submit" value="Update" class="btn btn-primary"> 
+          <a href="@routes.Warehouse.delete(primaryKey)" class="btn btn-danger">Delete</a>  
+          <a href="@routes.Application.index()" class="btn">Cancel</a> 
+        </div>
+      </div>
+    }
+  </div>
+</div>  
+}

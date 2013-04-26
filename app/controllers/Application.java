@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.List;
 import play.mvc.*;
 
 import views.html.*;
@@ -7,7 +8,7 @@ import views.html.*;
 public class Application extends Controller {
   
     public static Result index() {
-        return ok(index.render("Your new application is ready."));
+      List<models.Warehouse> warehouses = models.Warehouse.find().all();
+      return ok(index.render(warehouses));
     }
-  
 }

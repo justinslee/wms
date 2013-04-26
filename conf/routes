@@ -15,5 +15,17 @@ GET     /tags/:tagId                controllers.Tag.details(tagId: String)
 POST    /tags                       controllers.Tag.newTag()
 DELETE  /tags/:tagId                controllers.Tag.delete(tagId: String)
 
+# Warehouse operations
+# Add warehouse
+GET     /warehouse/create           controllers.Warehouse.create()
+POST    /warehouse                  controllers.Warehouse.save()
+# Edit existing warehouse
+GET     /warehouse/:primaryKey      controllers.Warehouse.edit(primaryKey: Long)
+POST    /warehouse/:primaryKey      controllers.Warehouse.update(primaryKey: Long)
+# Delete existing warehouse
+GET    /warehouse/:primaryKey/delete  controllers.Warehouse.delete(primaryKey: Long)
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /webjars/*file              controllers.WebJarAssets.at(file)

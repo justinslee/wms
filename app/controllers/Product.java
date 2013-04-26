@@ -18,6 +18,7 @@ public class Product extends Controller {
     return (product == null) ? notFound("No product found") : ok(product.toString());
   }
   
+  
   public static Result newProduct(){
     // Create a Product form and bind the request variables to it.
     Form<models.Product> productForm = form(models.Product.class).bindFromRequest(); 

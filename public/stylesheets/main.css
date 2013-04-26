@@ -1,0 +1,16 @@
+body {
+    padding-top: 50px;
+}
+
+.main-features {
+  margin-top: 10px;      
+}
+
+.pad-top {
+  padding-top: 10px;
+}
+
+.scrolling-table {  
+    height: 200px !important;
+    overflow: scroll;
+}

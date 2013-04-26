@@ -1,7 +1,82 @@
-@(message: String)
+@(warehouses : List[models.Warehouse])
 
-@main("Welcome to Play 2.1") {
-    
-    @play20.welcome(message, style = "Java")
-    
+@main("Warehouse Management System", "home") {
+
+ <div class="container">
+  <div class="row main-features">
+    <div class="span4">
+      <div class="well">
+        <h3>Warehouses</h3>
+        <p>Click a Warehouse to edit/delete:</p>
+        <div class="scrolling-table">
+          <table class="table table-condensed">
+            <tbody>
+              @for(warehouse <- warehouses) {
+                <tr><td><a href="@routes.Warehouse.edit(warehouse.primaryKey)">@warehouse.name (@warehouse.warehouseId)</a></td></tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <div class="pad-top">
+          <a href="@routes.Warehouse.create()" class="btn btn-block btn-success">New Warehouse</a> 
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="well">
+        <h3>Products</h3>
+        <p>Click a Product to edit/delete:</p>
+        <div class="scrolling-table">
+          <table class="table table-condensed">
+            <tbody>
+              <tr>
+                <td>
+                  <a http="#">13453278 (Baby Gaggia)</a> 
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a http="#">34876959 (Cafe Deluxe)</a> 
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a http="#">98765642 (Jura Extreme)</a> 
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pad-top">
+          <a class="btn btn-block btn-success">New Product</a> 
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="well">
+        <h3>Stock Items</h3>
+        <p>Click a Stock Item to edit/delete:</p>
+        <div class="scrolling-table">
+          <table class="table table-condensed">
+            <tbody>
+              <tr>
+                <td>
+                  <a http="#">SI-001 (Baby Gaggia)</a> 
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a http="#">SI-932 (Brewstation)</a> 
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pad-top">
+          <a class="btn btn-block btn-success">New Stock Item</a> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 }

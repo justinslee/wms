@@ -18,15 +18,26 @@ public class Warehouse extends Model {
   public String warehouseId;
   @Required
   public String name;
+  @Required 
+  public String city;
+  @Required
+  public String state;
+  @Required
+  public String zip;
+  
   @OneToMany(mappedBy="warehouse", cascade=CascadeType.ALL)
   public List<StockItem> stockitems = new ArrayList<>();
   
-  public Warehouse(String warehouseId, String name) {
+  public Warehouse(String warehouseId, String name, String city, String state, String zip) {
     this.warehouseId = warehouseId;
     this.name = name;
+    this.city = city;
+    this.state = state;
+    this.zip = zip;
   }
   
   public static Finder<Long, Warehouse> find() {
     return new Finder<Long, Warehouse>(Long.class, Warehouse.class);
   }
+  
 }

@@ -11,11 +11,14 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     javaCore,
     javaJdbc,
-    javaEbean
+    javaEbean,
+    "org.webjars" % "webjars-play" % "2.1.0",
+    "org.webjars" % "bootstrap" % "2.3.1"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here      
+    // Add your own project settings here 
+    //resolvers += "webjars" at "http://webjars.github.com/m2"
   )
 
 }
