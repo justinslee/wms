@@ -40,4 +40,12 @@ public class Warehouse extends Model {
     return new Finder<Long, Warehouse>(Long.class, Warehouse.class);
   }
   
+  public static List<String> getNames() {
+    List<String> warehouseNames = new ArrayList<>();
+    for (Warehouse warehouse : find().all()) {
+      warehouseNames.add(warehouse.name);
+    }
+    return warehouseNames;
+  }
+  
 }

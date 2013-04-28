@@ -1,0 +1,25 @@
+@(stockItemForm: Form[models.StockItem])
+
+@import helper._
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
+
+@main("WMS: Create StockItem") {
+
+<div class="container">
+  <div class="well">
+    <h3>Create StockItem</h3>
+    @form(routes.StockItem.save(), 'class -> "form-horizontal") {
+      @inputText(stockItemForm("stockItemId"), '_label -> "ID")
+      @select(stockItemForm("productName"), options = options(models.Product.getNames()), '_default -> "Choose a product", '_label -> "Product")
+      @select(stockItemForm("warehouseName"), options = options(models.Warehouse.getNames()), '_default -> "Choose a warehouse", '_label -> "Warehouse")
+      @inputText(stockItemForm("quantity"), '_label -> "Quantity")
+      <div class="control-group">
+        <div class="controls">    
+          <input type="submit" value="Create" class="btn btn-primary"> 
+          <a href="@routes.Application.index()" class="btn">Cancel</a> 
+        </div>
+      </div>
+    }
+  </div>
+</div>  
+}

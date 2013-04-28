@@ -13,7 +13,6 @@ import static play.test.Helpers.status;
 import static play.test.Helpers.stop;
 import java.util.HashMap;
 import java.util.Map;
-import models.Product;
 import models.Tag;
 import org.junit.After;
 import org.junit.Before;
@@ -39,47 +38,7 @@ public class ControllerTest {
     
     @Test
     public void testProductController() {
-      // Test GET /product on an empty database.
-      Result result = callAction(controllers.routes.ref.Product.index());
-      assertTrue("Empty products", contentAsString(result).contains("No products"));
 
-      // Test GET /product on a database containing a single product.
-      String productId = "Product-01";
-      Product product = new Product(productId, "French Press", "Coffee Maker");
-      product.save();
-      result = callAction(controllers.routes.ref.Product.index());
-      assertTrue("One product", contentAsString(result).contains(productId));
-      
-      // Test GET /product/Product-01
-      result = callAction(controllers.routes.ref.Product.details(productId));
-      assertTrue("Product detail", contentAsString(result).contains(productId));
-      
-      // Test GET /product/BadProductId and make sure we get a 404
-      result = callAction(controllers.routes.ref.Product.details("BadProductId"));
-      assertEquals("Product detail (bad)", NOT_FOUND, status(result));
-      
-      // Test POST /products (with simulated, valid form data).
-      Map<String, String> productData = new HashMap<String, String>();
-      productData.put("productId", "Product-02");
-      productData.put("name", "Baby Gaggia");
-      productData.put("description", "Espresso machine");
-      FakeRequest request = fakeRequest();
-      request.withFormUrlEncodedBody(productData);
-      result = callAction(controllers.routes.ref.Product.newProduct(), request);
-      assertEquals("Create new product", OK, status(result));
-      
-      // Test POST /products (with simulated, invalid form data).
-      request = fakeRequest();
-      result = callAction(controllers.routes.ref.Product.newProduct(), request);
-      assertEquals("Create bad product fails", BAD_REQUEST, status(result));
-      
-      // Test DELETE /products/Product-O1 (a valid ProductId)
-      result = callAction(controllers.routes.ref.Product.delete(productId));
-      assertEquals("Delete current product OK", OK, status(result));
-      result = callAction(controllers.routes.ref.Product.details(productId));
-      assertEquals("Deleted product gone", NOT_FOUND, status(result));
-      result = callAction(controllers.routes.ref.Product.delete(productId));
-      assertEquals("Delete missing product also OK", OK, status(result));
     }
     
     @Test

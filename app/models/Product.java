@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
@@ -20,6 +21,8 @@ public class Product extends Model {
   @Required
   public String name;
   public String description;
+  @Transient 
+  public String stockItemList = "";
   @ManyToMany(cascade=CascadeType.ALL)
   public List<Tag> tags = new ArrayList<>();
   @OneToMany(mappedBy="product", cascade=CascadeType.ALL)
@@ -39,4 +42,20 @@ public class Product extends Model {
     return String.format("[Product %s %s %s]", productId, name, description);
   }
   
+  public void setStockItemList() {
+    stockItemList = "";
+    for (StockItem item : stockitems) {
+        stockItemList +=  item.stockItemId + "\n";
+    }
+  }
+  
+  public static List<String> getNames() {
+    List<String> productNames = new ArrayList<>();
+    for (Product product : find().all()) {
+      productNames.add(product.name);
+    }
+    return productNames;
+  }
+  
+
 }

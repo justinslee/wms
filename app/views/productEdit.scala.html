@@ -1,0 +1,28 @@
+@(primaryKey: Long, productForm: Form[models.Product])
+
+@import helper._
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
+
+
+@main("WMS: Update Product") {
+
+<div class="container">
+  <div class="well">
+    <h3>Update Product</h3>
+    @form(routes.Product.update(primaryKey), 'class -> "form-horizontal") {
+      @inputText(productForm("productId"), '_label -> "ID", 'placeholder -> "Product-01")
+      @inputText(productForm("name"), '_label -> "Name", 'placeholder -> "Name")
+      @inputText(productForm("description"), '_label -> "Description", 'placeholder -> "Description")
+      @textarea(productForm("stockItemList"), '_label -> "Associated Stock Items", 'rows -> 5, 'readonly -> "yes")
+
+      <div class="control-group">
+        <div class="controls">    
+          <input type="submit" value="Update" class="btn btn-primary"> 
+          <a id="delete" href="@routes.Product.delete(primaryKey)" class="btn btn-danger">Delete</a>  
+          <a id="cancel" href="@routes.Application.index()" class="btn">Cancel</a> 
+        </div>
+      </div>
+    }
+  </div>
+</div>  
+}

@@ -5,16 +5,6 @@
 # Home page
 GET     /                           controllers.Application.index()
 
-GET     /products                   controllers.Product.index()
-GET     /products/:productId        controllers.Product.details(productId: String)
-POST    /products                   controllers.Product.newProduct()
-DELETE  /products/:productId        controllers.Product.delete(productId: String)
-
-GET     /tags                       controllers.Tag.index()
-GET     /tags/:tagId                controllers.Tag.details(tagId: String)
-POST    /tags                       controllers.Tag.newTag()
-DELETE  /tags/:tagId                controllers.Tag.delete(tagId: String)
-
 # Warehouse operations
 # Add warehouse
 GET     /warehouse/create           controllers.Warehouse.create()
@@ -24,6 +14,34 @@ GET     /warehouse/:primaryKey      controllers.Warehouse.edit(primaryKey: Long)
 POST    /warehouse/:primaryKey      controllers.Warehouse.update(primaryKey: Long)
 # Delete existing warehouse
 GET    /warehouse/:primaryKey/delete  controllers.Warehouse.delete(primaryKey: Long)
+
+
+# Product operations
+# Add product
+GET     /product/create             controllers.Product.create()
+POST    /product                    controllers.Product.save()
+# Edit existing product
+GET     /product/:primaryKey        controllers.Product.edit(primaryKey: Long)
+POST    /product/:primaryKey        controllers.Product.update(primaryKey: Long)
+# Delete existing product
+GET    /product/:primaryKey/delete  controllers.Product.delete(primaryKey: Long)
+
+# StockItem operations
+# Add stock item
+GET     /stockitem/create             controllers.StockItem.create()
+POST    /stockitem                    controllers.StockItem.save()
+# Edit existing stock item
+GET     /stockitem/:primaryKey        controllers.StockItem.edit(primaryKey: Long)
+POST    /stockitem/:primaryKey        controllers.StockItem.update(primaryKey: Long)
+# Delete existing stock item
+GET    /stockitem/:primaryKey/delete  controllers.StockItem.delete(primaryKey: Long)
+
+
+GET     /tags                       controllers.Tag.index()
+GET     /tags/:tagId                controllers.Tag.details(tagId: String)
+POST    /tags                       controllers.Tag.newTag()
+DELETE  /tags/:tagId                controllers.Tag.delete(tagId: String)
+
 
 
 # Map static resources from the /public folder to the /assets URL path

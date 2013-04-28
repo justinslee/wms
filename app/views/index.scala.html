@@ -1,6 +1,6 @@
-@(warehouses : List[models.Warehouse])
+@(warehouses : List[models.Warehouse], products : List[models.Product], stockItems : List[models.StockItem])
 
-@main("Warehouse Management System", "home") {
+@main("WMS: Home") {
 
  <div class="container">
   <div class="row main-features">
@@ -18,7 +18,7 @@
           </table>
         </div>
         <div class="pad-top">
-          <a href="@routes.Warehouse.create()" class="btn btn-block btn-success">New Warehouse</a> 
+          <a id="newWarehouse" href="@routes.Warehouse.create()" class="btn btn-block btn-success">New Warehouse</a> 
         </div>
       </div>
     </div>
@@ -29,26 +29,14 @@
         <div class="scrolling-table">
           <table class="table table-condensed">
             <tbody>
-              <tr>
-                <td>
-                  <a http="#">13453278 (Baby Gaggia)</a> 
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a http="#">34876959 (Cafe Deluxe)</a> 
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a http="#">98765642 (Jura Extreme)</a> 
-                </td>
-              </tr>
+              @for(product <- products) {
+                <tr><td><a href="@routes.Product.edit(product.primaryKey)">@product.name (@product.productId)</a></td></tr>
+              }
             </tbody>
           </table>
         </div>
         <div class="pad-top">
-          <a class="btn btn-block btn-success">New Product</a> 
+          <a id="newProduct" href="@routes.Product.create()" class="btn btn-block btn-success">New Product</a> 
         </div>
       </div>
     </div>
@@ -59,21 +47,14 @@
         <div class="scrolling-table">
           <table class="table table-condensed">
             <tbody>
-              <tr>
-                <td>
-                  <a http="#">SI-001 (Baby Gaggia)</a> 
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a http="#">SI-932 (Brewstation)</a> 
-                </td>
-              </tr>
+              @for(stockItem <- stockItems) {
+                <tr><td><a href="@routes.StockItem.edit(stockItem.primaryKey)">@stockItem.product.name (@stockItem.stockItemId)</a></td></tr>
+              }
             </tbody>
           </table>
         </div>
         <div class="pad-top">
-          <a class="btn btn-block btn-success">New Stock Item</a> 
+          <a href="@routes.StockItem.create()" class="btn btn-block btn-success">New Stock Item</a> 
         </div>
       </div>
     </div>
