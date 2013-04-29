@@ -15,7 +15,6 @@ public class StockItem extends Controller {
    * @return A stockItem form with default values. 
    */
   public static Result create() {
-    System.out.println("Entering SI create");
     models.StockItem defaults = new models.StockItem("ST-01", 25);
     Form<models.StockItem> stockItemForm = form(models.StockItem.class).fill(defaults);
     return ok(stockitemCreate.render(stockItemForm));
@@ -26,15 +25,12 @@ public class StockItem extends Controller {
    * @return The home page. 
    */
   public static Result save() {
-    System.out.println("Entering SI save");    
     Form<models.StockItem> stockItemForm = form(models.StockItem.class).bindFromRequest();
     if (stockItemForm.hasErrors()) {
-      System.out.println("In SI save, got errors" + stockItemForm.errors());
       return badRequest(stockitemCreate.render(stockItemForm));
     }
     models.StockItem stockItem = stockItemForm.get();
     stockItem.save();
-    System.out.println("In SI Save, num stockitems is: " + models.StockItem.find().all().size());
     return redirect(routes.Application.index());
   }
   
@@ -44,10 +40,7 @@ public class StockItem extends Controller {
    * @return An filled stockItem form.
    */
   public static Result edit(Long primaryKey) {
-    System.out.println("Entering SI edit");    
     models.StockItem stockItem = models.StockItem.find().byId(primaryKey);
-    System.out.println("In SI Edit, stockitem is: " + stockItem + " " + 
-    models.StockItem.find().all().size());
     Form<models.StockItem> stockItemForm = form(models.StockItem.class).fill(stockItem);
     return ok(stockitemEdit.render(primaryKey, stockItemForm));
   }
@@ -59,7 +52,6 @@ public class StockItem extends Controller {
    * @return The home page. 
    */
   public static Result update(Long primaryKey) {
-    System.out.println("Entering SI update");    
     Form<models.StockItem> stockItemForm = form(models.StockItem.class).bindFromRequest();
     if (stockItemForm.hasErrors()) {
       return badRequest(stockitemEdit.render(primaryKey, stockItemForm));
