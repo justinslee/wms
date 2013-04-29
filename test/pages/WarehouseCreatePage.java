@@ -3,10 +3,10 @@ package pages;
 import org.fluentlenium.core.FluentPage;
 import org.openqa.selenium.WebDriver;
 
-public class NewWarehousePage extends FluentPage {
+public class WarehouseCreatePage extends FluentPage {
   private String url;
   
-  public NewWarehousePage (WebDriver webDriver, int port) {
+  public WarehouseCreatePage (WebDriver webDriver, int port) {
     super(webDriver);
     this.url = "http://localhost:" + port + "/warehouse/create";
   }
@@ -25,6 +25,6 @@ public class NewWarehousePage extends FluentPage {
     fill("#city").with("Honolulu");
     fill("#state").with("Hawaii");
     fill("#zip").with("96822");
-    submit("#submit");
+    submit("#create");
   }
 }

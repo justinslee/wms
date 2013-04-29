@@ -2,10 +2,10 @@ package pages;
 import org.fluentlenium.core.FluentPage;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage extends FluentPage {
+public class IndexPage extends FluentPage {
   private String url;
   
-  public HomePage (WebDriver webDriver, int port) {
+  public IndexPage (WebDriver webDriver, int port) {
     super(webDriver);
     this.url = "http://localhost:" + port;
   }

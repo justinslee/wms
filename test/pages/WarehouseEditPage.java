@@ -3,10 +3,10 @@ package pages;
 import org.fluentlenium.core.FluentPage;
 import org.openqa.selenium.WebDriver;
 
-public class EditWarehousePage extends FluentPage {
+public class WarehouseEditPage extends FluentPage {
   private String url;
   
-  public EditWarehousePage (WebDriver webDriver, int port, int primaryKey) {
+  public WarehouseEditPage (WebDriver webDriver, int port, int primaryKey) {
     super(webDriver);
     this.url = "http://localhost:" + port + "/warehouse/" + primaryKey;
   }
@@ -25,7 +25,7 @@ public class EditWarehousePage extends FluentPage {
     fill("#city").with("Honolulu");
     fill("#state").with("Hawaii");
     fill("#zip").with("96822");
-    submit("#submit");
+    submit("#update");
   }
   
   public void deleteWarehouse() {

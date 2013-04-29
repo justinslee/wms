@@ -56,13 +56,13 @@ public class StockItem extends Model {
     if (productName != null) {
       product = Product.find().where().eq("name", productName).findUnique();
       if (product == null) {
-        return "Could not find product";
+        return "Could not find product named: " + productName;
       }
     }
     if (warehouseName != null) {
       warehouse = Warehouse.find().where().eq("name", warehouseName).findUnique();
       if (warehouse == null) {
-        return "Could not find warehouse";
+        return "Could not find warehouse named: " + warehouseName;
       }
     }
     // otherwise all good.
