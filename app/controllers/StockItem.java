@@ -27,6 +27,7 @@ public class StockItem extends Controller {
   public static Result save() {
     Form<models.StockItem> stockItemForm = form(models.StockItem.class).bindFromRequest();
     if (stockItemForm.hasErrors()) {
+      System.out.println("Bad request: " + stockItemForm.errors());
       return badRequest(stockitemCreate.render(stockItemForm));
     }
     models.StockItem stockItem = stockItemForm.get();

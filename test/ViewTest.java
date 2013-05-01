@@ -125,7 +125,8 @@ public class ViewTest {
       }
     });
   }
-  
+
+  @Test
   public void testStockItemCreatePage () {
     running(testServer(3333, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
       public void invoke(TestBrowser browser) {
@@ -146,39 +147,47 @@ public class ViewTest {
         StockItemCreatePage stockItemPage = new StockItemCreatePage(browser.getDriver(), 3333);
         browser.goTo(stockItemPage);
         stockItemPage.makeNewStockItem(stockItemId, productId, warehouseId);
+        browser.goTo(homePage);
         homePage.isAt();
         homePage.pageSource().contains(stockItemId);
       }
     });
   }
-  
+
+  @Test
   public void testStockItemEditPage () {
     running(testServer(3333, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
       public void invoke(TestBrowser browser) {
         // create a reference to the home page.
         IndexPage homePage = new IndexPage(browser.getDriver(), 3333);
+
         // Create a product.
         ProductCreatePage productPage = new ProductCreatePage(browser.getDriver(), 3333); 
         browser.goTo(productPage);
         String productId = "NewTestProduct";
         productPage.makeNewProduct(productId);
+
         // Create a warehouse.
         WarehouseCreatePage warehousePage = new WarehouseCreatePage(browser.getDriver(), 3333); 
         browser.goTo(warehousePage);
         String warehouseId = "NewTestWarehouse";
         warehousePage.makeNewWarehouse(warehouseId);
+
         // Now create a StockItem that references the test product and warehouse
         String stockItemId = "SI-01";
         StockItemCreatePage stockItemPage = new StockItemCreatePage(browser.getDriver(), 3333);
         browser.goTo(stockItemPage);
+        //Note: stockItemId = stockItemName and productId = productName. 
         stockItemPage.makeNewStockItem(stockItemId, productId, warehouseId);
         homePage.isAt();
         homePage.pageSource().contains(stockItemId);
         
         // Now we can finally edit it.
-        StockItemEditPage editPage = new StockItemEditPage(browser.getDriver(), 3333, 3);
+        StockItemEditPage editPage = new StockItemEditPage(browser.getDriver(), 3333, 1);
         browser.goTo(editPage);
+        
         String editStockItemId = "EditedStockItemId";
+        //Note: stockItemId = stockItemName and productId = productName. 
         editPage.editStockItem(editStockItemId, productId, warehouseId);
         homePage.pageSource().contains(editStockItemId);
         // Test that we can delete the page and it will no longer be found on the home page. 
@@ -189,7 +198,4 @@ public class ViewTest {
       }
     });
   }
-  
-  
-
 }

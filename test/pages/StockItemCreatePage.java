@@ -23,8 +23,8 @@ public class StockItemCreatePage extends FluentPage {
   
   public void makeNewStockItem(String stockItemId, String productName, String warehouseName) {
     fill("#stockItemId").with(stockItemId);
-    click("#productName", withText(productName));
-    click("#warehouseName", withText(warehouseName));
+    find("select", withId("productName")).find("option", withText(productName)).click();
+    find("select", withId("warehouseName")).find("option", withText(warehouseName)).click();
     fill("#quantity").with("25");
     submit("#create");
   }

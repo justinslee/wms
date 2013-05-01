@@ -19,9 +19,10 @@ public class ProductEditPage extends FluentPage {
     assert(title().equals("WMS: Update Product"));
   }
   
+  // For testing purposes, use the same string for both ID and name.
   public void editProduct(String newProductId) {
     fill("#productId").with(newProductId);
-    fill("#name").with("MyProduct");
+    fill("#name").with(newProductId);
     fill("#description").with("A nice product");
     submit("#update");
   }

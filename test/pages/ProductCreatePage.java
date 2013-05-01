@@ -19,9 +19,10 @@ public class ProductCreatePage extends FluentPage {
     assert(title().equals("WMS: Create Product"));
   }
   
+  // For testing purposes, use the same string for both ID and name.
   public void makeNewProduct(String productId) {
     fill("#productId").with(productId);
-    fill("#name").with("MyProduct");
+    fill("#name").with(productId);
     fill("#description").with("A nice product");
     submit("#create");
   }

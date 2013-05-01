@@ -19,9 +19,10 @@ public class WarehouseCreatePage extends FluentPage {
     assert(title().equals("WMS: Create Warehouse"));
   }
   
+  // For testing purposes, use the same string for both ID and name.
   public void makeNewWarehouse(String warehouseId) {
     fill("#warehouseId").with(warehouseId);
-    fill("#name").with("MyWarehouse");
+    fill("#name").with(warehouseId);
     fill("#city").with("Honolulu");
     fill("#state").with("Hawaii");
     fill("#zip").with("96822");
